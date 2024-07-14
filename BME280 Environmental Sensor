@@ -1,0 +1,11 @@
+
+#Summary of Connections:
+
+| **BME280 Pin** | **Raspberry Pi Pin** | **Description**            |
+|----------------|----------------------|----------------------------|
+| VCC            | Pin 1 or Pin 17 (3.3V) or Pin 2 or Pin 4 (5V) | Power Supply Positive    |
+| GND            | Pin 6, Pin 9, Pin 14, Pin 20, Pin 25, Pin 30, Pin 34, Pin 39 | Ground |
+| SCK            | Pin 23 (GPIO11)      | SPI Clock Line (SCLK)      |
+| MOSI           | Pin 19 (GPIO10)      | SPI Data Input (MOSI)      |
+| MISO/ADDR      | Pin 21 (GPIO9)       | SPI Data Output (MISO)     |
+| CS             | Pin 24 (GPIO8)       | SPI Chip Select (CE0)      |
