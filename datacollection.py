@@ -1,38 +1,33 @@
-import smbus2
-import bme280  # Install with: pip3 install RPi.bme280
+#!/usr/bin/env python3
+
 import time
+import datetime
+import bme680
 
-# Raspberry Pi I2C bus (depends on the Raspberry Pi version)
-# 0 for older versions (256MB, 512MB, 1GB RAM),
-# 1 for newer versions (2GB, 4GB, 8GB RAM)
-I2C_BUS = 1
+def main():
+    print("Reading BME680 sensor data with timestamps")
 
-# BME280 address
-BME280_I2C_ADDR = 0x77
+    try:
+        sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
+    except (RuntimeError, IOError):
+        sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
 
-# Open the I2C bus
-bus = smbus2.SMBus(I2C_BUS)
+    # These oversampling settings can be tweaked to change the balance between accuracy and noise in the data.
+    sensor.set_humidity_oversample(bme680.OS_2X)
+    sensor.set_pressure_oversample(bme680.OS_4X)
+    sensor.set_temperature_oversample(bme680.OS_8X)
+    sensor.set_filter(bme680.FILTER_SIZE_3)
 
-# Load calibration data
-calibration_params = bme280.load_calibration_params(bus, BME280_I2C_ADDR)
+    print('Polling:')
+    try:
+        while True:
+            if sensor.get_sensor_data():
+                timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                output = '{0} - {1:.2f} C, {2:.2f} hPa, {3:.3f} %RH'.format(timestamp, sensor.data.temperature, sensor.data.pressure, sensor.data.humidity)
+                print(output)
+            time.sleep(1)  # Adjust sleep time as needed
+    except KeyboardInterrupt:
+        pass
 
-def read_bme280_data():
-    # Read raw sensor data
-    raw_data = bme280.sample(bus, BME280_I2C_ADDR, calibration_params)
-
-    # Extract temperature, pressure, and humidity
-    temperature = raw_data.temperature
-    pressure = raw_data.pressure
-    humidity = raw_data.humidity
-
-    return temperature, pressure, humidity
-
-try:
-    while True:
-        temperature, pressure, humidity = read_bme280_data()
-        print(f"Temperature: {temperature:.2f} °C, Pressure: {pressure:.2f} >
-        time.sleep(1)  # Delay for 1 second
-except KeyboardInterrupt:
-    pass
-finally:
-    bus.close()
+if __name__ == '__main__':
+    main()
