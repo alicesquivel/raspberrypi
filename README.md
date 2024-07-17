@@ -1,12 +1,12 @@
-All Raspberry Pi setup.
+# All Raspberry Pi setup.
 
-# Enable wifi
+## Enable wifi
 In the boot partition, simple create an empty file with the name ssh.
 
 Edit the file wpa_supplicant.conf. Change \ to your ISO country code found here (for the United States, this is US). Change \ to the SSID of your WiFi network and \ to the WiFi network's password.
 Find the ```raspberrypi/wpa_supplicant.conf``` in this repo. 
 
-# To set up a virtual environment for Python projects on your Raspberry Pi, follow these steps:
+## To set up a virtual environment for Python projects on your Raspberry Pi, follow these steps:
 Starting with the October 10, 2023 Bookworm release of the Raspberry Pi OS, the use of Python Virtual Environments (venv) when pip installing packages is required. **No more sudo pip**. This will break things and require learning new things. 
 
 Python Virtual Environment Usage on Raspberry Pi https://learn.adafruit.com/python-virtual-environment-usage-on-raspberry-pi/overview 
