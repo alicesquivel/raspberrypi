@@ -9,7 +9,7 @@ Find the ```raspberrypi/wpa_supplicant.conf``` in this repo.
 ## To set up a virtual environment for Python projects on your Raspberry Pi, follow these steps:
 Starting with the October 10, 2023 Bookworm release of the Raspberry Pi OS, the use of Python Virtual Environments (venv) when pip installing packages is required. **No more sudo pip**. This will break things and require learning new things. 
 
-[Learn how to have Python Virtual Environment Running on Raspberry Pi here]( https://learn.adafruit.com/python-virtual-environment-usage-on-raspberry-pi/overview)
+[Learn how to have Python Virtual Environment Running on Raspberry Pi]( https://learn.adafruit.com/python-virtual-environment-usage-on-raspberry-pi/overview)
  
 ## Install virtualenv if not already installed:
 ```
