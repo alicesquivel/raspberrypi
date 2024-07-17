@@ -7,7 +7,10 @@ Edit the file wpa_supplicant.conf. Change \ to your ISO country code found here 
 Find the ```raspberrypi/wpa_supplicant.conf``` in this repo. 
 
 # To set up a virtual environment for Python projects on your Raspberry Pi, follow these steps:
+Starting with the October 10, 2023 Bookworm release of the Raspberry Pi OS, the use of Python Virtual Environments (venv) when pip installing packages is required. **No more sudo pip**. This will break things and require learning new things. 
 
+Python Virtual Environment Usage on Raspberry Pi https://learn.adafruit.com/python-virtual-environment-usage-on-raspberry-pi/overview 
+ 
 ## Install virtualenv if not already installed:
 ```
 sudo apt update
